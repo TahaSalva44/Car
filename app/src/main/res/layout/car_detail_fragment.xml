@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <variable
+        name="data"
+        type="com.example.carcom.model.CarDetail" />
+</data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tool="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <RelativeLayout
+            android:id="@+id/detail_fragment_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="8dp">
+
+            <TextView
+                android:id="@+id/detail_fragment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="4dp"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
+                android:text="@{data.modelName}"
+                android:textSize="15sp"
+                tool:text="Sahibinden Suzuki SX4 1.6 GLX 2010 Model" />
+
+        </RelativeLayout>
+
+
+        <ScrollView
+            android:id="@+id/detail_fragment_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/detail_fragment_title_layout">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/detailViewPager"
+                    indicatorCar="@{indicator}"
+                    setUpRecyclerCarDetail="@{data.photos}"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="4dp"
+                    android:focusable="true" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/detailViewPager"
+                    app:ci_animator="@anim/ci_anim"
+                    app:ci_drawable="@drawable/ci_selected"
+                    app:ci_drawable_unselected="@drawable/ci_unselected"
+                    app:ci_height="12dp"
+                    app:ci_orientation="horizontal"
+                    app:ci_width="12dp" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/detail_fragment_page_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/detail_fragment_info_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:elevation="16dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/car_39e0e0e0"
+                    app:cardCornerRadius="8dp">
+
+                    <TextView
+                        android:id="@+id/slider_page_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="4dp"
+                        android:textColor="@color/car_39e0e0e0"
+                        android:textSize="16sp"
+                        tool:text="1/2" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <RelativeLayout
+                    android:id="@+id/detail_fragment_info_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detailViewPager"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/car_39e0e0e0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detail_fragment_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:text="@{data.userInfo.nameSurname}"
+                        android:textColor="@color/car_ee7621"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tool:text="Darcy Aguirre" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.05dp"
+                        android:layout_below="@+id/detail_fragment_user_name"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/car_ee7621" />
+
+                    <TextView
+                        android:id="@+id/detail_fragment_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:text="@{data.category.name}"
+                        android:textColor="@color/car_ee7621"
+                        tool:text="otomobil/suzuki-sx4-1-6-glx" />
+
+                    <LinearLayout
+                        android:id="@+id/detail_fragment_category_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/detail_fragment_category"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/detail_fragment_city_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{data.location.cityName}"
+                            tool:text="Malatya" />
+
+                        <TextView
+                            android:id="@+id/detail_fragment_slash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:layout_marginHorizontal="4dp" />
+
+                        <TextView
+                            android:id="@+id/detail_fragment_town_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{data.location.townName}"
+                            tool:text="Battalgazi" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/detail_fragment_category_layout"
+                        android:layout_marginTop="16dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/detail_fragment_car_details_button"
+                            android:layout_width="180dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="@color/white"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:maxLines="1"
+                            android:text="@string/adverb_details"
+                            android:textColor="@color/car_ee7621"
+                            android:textSize="11sp"
+                            app:strokeColor="@color/car_ee7621"
+                            app:strokeWidth="1dp" />
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/detail_fragment_description_button"
+                            android:layout_width="180dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="8dp"
+                            android:backgroundTint="@color/car_ee7621"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:text="@string/adverb_explanations"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@+id/detail_fragment_user_name"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/car_ee7621" />
+
+                </RelativeLayout>
+
+                <include
+                    android:id="@+id/detail_fragment_properties_container"
+                    layout="@layout/layout_car_properties"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/detail_fragment_info_layout"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="16dp"
+                    />
+
+                <include
+                    android:id="@+id/detail_fragment_explanations_container"
+                    layout="@layout/layout_car_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detail_fragment_info_layout"
+                    android:layout_marginTop="16dp" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>

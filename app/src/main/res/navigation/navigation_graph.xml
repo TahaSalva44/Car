@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/car"
+    tools:ignore="UnusedNavigation">
+
+
+    <fragment
+        android:id="@+id/car"
+        android:name="com.example.carcom.ui.CarListFragment"
+        android:label="Car" />
+
+        <action
+            android:id="@+id/action_car_to_carDetail"
+            app:destination="@id/carDetail" />
+
+    <fragment
+        android:id="@+id/carDetail"
+        android:name="com.example.carcom.ui.CarDetailFragment"
+        android:label="CarDetail"/>
+
+</navigation>
